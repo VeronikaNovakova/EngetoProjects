@@ -5,10 +5,11 @@ username = input("USERNAME: ")
 password = input("PASSWORD: ")
 registered_users = {"bob":"123", "ann":"pass123", "mike":"password123", "liz":"pass123"}
 if registered_users.get(username) == password:
-    print("You are already registered user.")
+    print("Welcome", username + "!")
+    print("-" * 40)
 else:
-    print("Thank you for your registration. You are a new user.")
-print("-" * 40)
+    print("Error! You are not a registered user. Access denied.")
+    exit()
 
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer, 
@@ -42,10 +43,15 @@ garpike and stingray are also present.'''
 
 #4 - Select a paragraph
 print("We have 3 texts to be analyzed.")
-text_number = int(input("Enter a number btw. 1 and 3 to select: "))
-print("-" * 40)
+text_number = input("Enter a number btw. 1 and 3 to select: ")
+if text_number == "1" or text_number == "2" or text_number == "3":
+    print("-" * 40)
+else:
+    print("Error! You have entered invalid character. Please try again.")
+    exit()
 
 #Text split
+text_number = int(text_number)
 selected_text = (TEXTS[text_number-1].split())
 
 #5 - Number of words in selected paragraph
@@ -83,9 +89,8 @@ for c in letters_counts:
 print("-" * 40)
 
 #7 - Sum of numbers in a text
-text0 = TEXTS[0].split()
 text1 = 0
-for a in text0[15:45]:
+for a in selected_text:
   if a.isdigit():
     text1 += int(a)
 print("If we summed all the numbers in this text we would get:", text1)
